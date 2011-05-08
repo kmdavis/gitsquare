@@ -27,7 +27,7 @@ mongoose.model("Repository", schema.Repository);
 mongoose.model("Commit", schema.Commit);
 mongoose.model("Committer", schema.Committer);
 
-exports = {
+module.exports = {
   Repository: mongoose.model("Repository"),
   Commit: mongoose.model("Commit"),
   Committer: mongoose.model("Committer")
