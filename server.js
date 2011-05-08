@@ -42,7 +42,7 @@ app.all("/github_receive", function (req, res) {
       dbCommit.save();
       repo.commits.push(dbCommit);
 
-      db.Committer.findOne({ email: commit.author.email }, function (err, committer) {
+      /*db.Committer.findOne({ email: commit.author.email }, function (err, committer) {
         if (!committer) {
           committer = new db.Committer({
             email: commit.author.email,
@@ -52,7 +52,7 @@ app.all("/github_receive", function (req, res) {
 
         committer.commits.push(dbCommit);
         committer.save();
-      });
+      });*/
     });
 
     repo.save();
