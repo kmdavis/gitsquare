@@ -12,7 +12,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/list_repos", function (req, res) {
-  db.Repository.find({}, function (err, repos) {
+  db.Repository.find({ url: /.*/ }, function (err, repos) {
     var out = "";
     _.each(repos, function (repo) {
       out += repo.url + "<br/>";
