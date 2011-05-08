@@ -1,0 +1,1 @@
+"Congrats, you're now the mayor!"
