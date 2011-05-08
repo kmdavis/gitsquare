@@ -29,10 +29,10 @@ app.get("/", function(req, res, next) {
   res.render("index", {});
 });
 
-app.post("/receive", function (req, res, next) {
+app.post("/receive", function (req, res) {
   var foo = JSON.parse(req.params.payload);
 
-  res.send("Testing Post Receive Hook");
+  res.send("Congrats, you're now the mayor!");
   
   // todo
   /* example github post-receive:
