@@ -13,7 +13,7 @@ app.get("/", function(req, res) {
 
 app.get("/list_repos", function (req, res) {
   db.Repository.find({ url: /.*/ }, function (err, repos) {
-    puts(require("sys").inspect(repos));
+    console.log(repos);
     res.render("list_repos", { repos: repos });
   });
 });
