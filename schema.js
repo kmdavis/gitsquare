@@ -35,19 +35,19 @@ module.exports = exports = {
 
 var Commit = new Schema({
   repository: {
-    url: String
+    url: { type: String, index: true, required: true }
   },
   author: {
-    name: String,
-    email: String
+    name: { type: String, required: true },
+    email: { type: String, index: true, required: true }
   },
-  timestamp: Date,
-  branch: String,
+  timestamp: { type: Date, required: true },
+  branch: { type: String, required: true },
+  message: { type: String, required: true },
+  sha: { type: String, required: true, unique: true },
   added: { type: [String], required: false },
   removed: { type: [String], required: false },
-  modified: { type: [String], required: false },
-  message: String,
-  sha: String
+  modified: { type: [String], required: false }
 });
 
 mongoose.model("Commit", Commit);

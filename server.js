@@ -22,13 +22,26 @@ app.get("/list_repos", function (req, res) {
   /*db.Repository.find({ url: /.*//* }, function (err, repos) {
     res.render("list_repos", { context: { repos: repos }});
   });*/
+  db.Commit.find({ sha: /.*/ }, function (err, commits) {
+    var repos = {};
+
+    _.each(commits, function (commit) {
+      if (!repos[commit.repository.url]) {
+        repos[commit.repository.url] = [];
+      }
+
+      repos[commit.repository.url].push(commit);
+    });
+
+    res.render("list_repos", { context: { repos: repos }});
+  });
 });
 
 app.all("/github_receive", function (req, res) {
   var payload = JSON.parse(req.param("payload"));
 
   _.each(payload.commits, function (commit) {
-    new db.Commit({
+    db.Commit.create({
       repository: {
         url: payload.repository.url
       },
@@ -43,7 +56,7 @@ app.all("/github_receive", function (req, res) {
       modified: commit.modified,
       message: commit.message,
       sha: commit.id
-    }).save();
+    });
   });
 
   /*db.Repository.findOne({ url: payload.repository.url }, function (err, repo) {
