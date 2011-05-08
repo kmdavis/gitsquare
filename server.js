@@ -41,7 +41,7 @@ app.all("/github_receive", function (req, res) {
   var payload = JSON.parse(req.param("payload"));
 
   _.each(payload.commits, function (commit) {
-    db.Commit.create({
+    new db.Commit({
       repository: {
         url: payload.repository.url
       },
@@ -56,7 +56,7 @@ app.all("/github_receive", function (req, res) {
       modified: commit.modified,
       message: commit.message,
       sha: commit.id
-    });
+    }).save();
   });
 
   /*db.Repository.findOne({ url: payload.repository.url }, function (err, repo) {
