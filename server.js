@@ -1,8 +1,11 @@
 var
   http = require("http"),
   _ =require("underscore"),
-  app = require("express").createServer(),
+  express = require("express"),
+  app = express.createServer(),
   db = require("./schema");
+
+app.use(express.bodyParser());
 
 app.register(".coffee", require("coffeekup"));
 app.set("view engine", "coffee");
@@ -12,7 +15,7 @@ app.get("/", function(req, res) {
 });
 
 app.get("/test", function (req, res) {
-  res.render("index", { layout: true, context: { title: "foo" } });
+  res.render("test", { layout: true, context: { title: "foo" } });
 });
 
 app.get("/list_repos", function (req, res) {
@@ -23,10 +26,8 @@ app.get("/list_repos", function (req, res) {
 });
 
 app.all("/github_receive", function (req, res) {
-  req.res = null;
-  console.log(_.keys(req));
   console.log(req.param("payload"));
-  /*var foo = JSON.parse(req.param("payload"));
+  var foo = JSON.parse(req.param("payload"));
 
   db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
     if (!repo) {
@@ -35,7 +36,7 @@ app.all("/github_receive", function (req, res) {
       });
       repo.save();
     }
-  });*/
+  });
 
   res.render("receive_response", { layout: false });
 
