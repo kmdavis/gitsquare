@@ -2,35 +2,38 @@ var
   http = require("http"),
   _ =require("underscore"),
   app = require("express").createServer(),
-  mongoose = require("mongoose"),
-  Schema = mongoose.Schema,
-  ObjectId = Schema.ObjectId;
+  db = require("./schema");
 
 app.register(".coffee", require("coffeekup"));
 app.set("view engine", "coffee");
 
-mongoose.connect(process.env['DUOSTACK_DB_MONGODB']);
-
-var
-  // todo
-
-  Badge = new Schema({
-  });
-
-  Committer = new Schema({
-    name: String,
-    email: String,
-    // todo
-    badges: [ObjectId],
-    mayorships: [ObjectId]
-  });
-
-app.get("/", function(req, res, next) {
+app.get("/", function(req, res) {
   res.render("index", {});
 });
 
-app.post("/receive", function (req, res) {
+app.get("/list_repos", function (req, res) {
+  db.Repository.find({}, function (err, repos) {
+    var out = "";
+    _.each(repos, function (repo) {
+      out += repo.url + "<br/>";
+    });
+    res.send(out);
+  });
+});
+
+app.all("/github_receive", function (req, res) {
   var foo = JSON.parse(req.params.payload);
+
+  db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
+    if (!repo) {
+      repo = new db.Repository({
+        url: foo.Repository.url
+      });
+      repo.save();
+    }
+  });
+
+  
 
   res.send("Congrats, you're now the mayor!");
   
