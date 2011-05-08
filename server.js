@@ -6,6 +6,11 @@ var
   Schema = mongoose.Schema,
   ObjectId = Schema.ObjectId;
 
+app.register(".coffee", require("coffeekup"));
+app.set("view engine", "coffee");
+
+mongoose.connect(process.env['DUOSTACK_DB_MONGODB']);
+
 var
   // todo
 
@@ -20,17 +25,14 @@ var
     mayorships: [ObjectId]
   });
 
-app.register(".coffee", require("coffeekup"));
-app.set("view engine", "coffee");
-
-mongoose.connect(process.env['DUOSTACK_DB_MONGODB']);
-
 app.get("/", function(req, res, next) {
   res.render("index", {});
 });
 
 app.post("/receive", function (req, res, next) {
   var foo = JSON.parse(req.params.payload);
+
+  res.send("Testing Post Receive Hook");
   // todo
   /* example github post-receive:
   {
