@@ -1,8 +1,16 @@
-var http = require('http');
+var
+  http = require("http"),
+  mongoose = require("mongoose");
+  _ =require("underscore"),
+  app = require("express").createServer();
 
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('GitSquare is Coming Soon!\n');
-}).listen(8124, "127.0.0.1");
+app.register(".coffee", require("coffeekup"));
+app.set("view engine", "coffee");
 
-console.log('Server running at http://127.0.0.1:8124/');
+//mongoose.connect(process.env['DUOSTACK_DB_MONGODB']);
+
+app.get("/", function(req, res, next) {
+  res.render("index", {});
+});
+
+app.listen(9876);
