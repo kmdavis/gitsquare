@@ -50,6 +50,8 @@ var Commit = new Schema({
   sha: String
 });
 
+mongoose.model("Commit", Commit);
+
 module.exports = exports = {
   Commit: mongoose.model("Commit")
 };
