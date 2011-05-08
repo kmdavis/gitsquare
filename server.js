@@ -1,8 +1,8 @@
 var
   http = require("http"),
   _ =require("underscore"),
-  app = require("express").createServer();//,
-  //db = require("./schema");
+  app = require("express").createServer(),
+  db = require("./schema");
 
 app.register(".coffee", require("coffeekup"));
 app.set("view engine", "coffee");
@@ -16,24 +16,24 @@ app.get("/test", function (req, res) {
 });
 
 app.get("/list_repos", function (req, res) {
-  /*db.Repository.find({ url: /.*//* }, function (err, repos) {
+  db.Repository.find({ url: /.*/ }, function (err, repos) {
     console.log(repos);
     res.render("list_repos", { context: { repos: repos }});
-  });*/
+  });
 });
 
 app.all("/github_receive", function (req, res) {
   console.log(req.param("payload"));
   var foo = JSON.parse(req.param("payload"));
 
-  /*db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
+  db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
     if (!repo) {
       repo = new db.Repository({
         url: foo.Repository.url
       });
       repo.save();
     }
-  });*/
+  });
 
   res.render("receive_response", { layout: false });
 
