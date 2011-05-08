@@ -32,11 +32,16 @@ app.all("/github_receive", function (req, res) {
       repo = new db.Repository({
         url: payload.repository.url
       });
-
-      repo.save();
     }
 
     _.each(payload.commits, function (commit) {
+      var dbCommit = new db.Commit({
+        timestamp: new Date(commit.timestamp)
+      });
+
+      dbCommit.save();
+      repo.commits.push(dbCommit);
+
       db.Committer.findOne({ email: commit.author.email }, function (err, committer) {
         if (!committer) {
           committer = new db.Committer({
@@ -45,18 +50,12 @@ app.all("/github_receive", function (req, res) {
           });
         }
 
-        var commit = new db.Commit({
-          timestamp: new Date(commit.timestamp)
-        });
-
-        committer.commits.push(commit);
-        repo.commits.push(commit);
-
-        commit.save();
+        committer.commits.push(dbCommit);
         committer.save();
-        repo.save();
       });
     });
+
+    repo.save();
   });
 
   res.render("receive_response", { layout: false });
