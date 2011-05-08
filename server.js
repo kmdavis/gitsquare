@@ -24,7 +24,7 @@ app.get("/list_repos", function (req, res) {
 
 app.all("/github_receive", function (req, res) {
   console.log(req.param("payload"));
-  var foo = JSON.parse(req.param("payload"));
+  /*var foo = JSON.parse(req.param("payload"));
 
   db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
     if (!repo) {
@@ -33,7 +33,7 @@ app.all("/github_receive", function (req, res) {
       });
       repo.save();
     }
-  });
+  });*/
 
   res.render("receive_response", { layout: false });
 
