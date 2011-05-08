@@ -32,7 +32,7 @@ app.all("/github_receive", function (req, res) {
   db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
     if (!repo) {
       repo = new db.Repository({
-        url: foo.Repository.url
+        url: foo.repository.url
       });
       repo.save();
     }
