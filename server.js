@@ -20,22 +20,43 @@ app.get("/test", function (req, res) {
 
 app.get("/list_repos", function (req, res) {
   db.Repository.find({ url: /.*/ }, function (err, repos) {
-    console.log(repos);
     res.render("list_repos", { context: { repos: repos }});
   });
 });
 
 app.all("/github_receive", function (req, res) {
-  console.log(req.param("payload"));
-  var foo = JSON.parse(req.param("payload"));
+  var payload = JSON.parse(req.param("payload"));
 
-  db.Repository.findOne({ url: foo.repository.url }, function (err, repo) {
+  db.Repository.findOne({ url: payload.repository.url }, function (err, repo) {
     if (!repo) {
       repo = new db.Repository({
-        url: foo.repository.url
+        url: payload.repository.url
       });
+
       repo.save();
     }
+
+    _.each(payload.commits, function (commit) {
+      db.Committer.findOne({ email: commit.author.email }, function (err, committer) {
+        if (!committer) {
+          committer = new db.Committer({
+            email: commit.author.email,
+            name: commit.author.name
+          });
+        }
+
+        var commit = new db.Commit({
+          timestamp: new Date(commit.timestamp)
+        });
+
+        committer.commits.push(commit);
+        repo.commits.push(commit);
+
+        commit.save();
+        committer.save();
+        repo.save();
+      });
+    });
   });
 
   res.render("receive_response", { layout: false });

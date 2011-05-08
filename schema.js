@@ -6,21 +6,19 @@ var
 
 mongoose.connect(process.env['DUOSTACK_DB_MONGODB']);
 
+schema.Commit = new Schema({
+  timestamp: Date
+});
+
 schema.Repository = new Schema({
-  url: String
+  url: String,
+  commits: [schema.Commit]
 });
 
 schema.Committer = new Schema({
   name: String,
   email: String,
-  // todo
-  badges: [ObjectId],
-  mayorships: [ObjectId]
-});
-
-schema.Commit = new Schema({
-  author: ObjectId,
-  timestamp: Date
+  commits: [schema.Commit]
 });
 
 mongoose.model("Repository", schema.Repository);
