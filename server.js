@@ -23,6 +23,7 @@ app.get("/list_repos", function (req, res) {
 });
 
 app.all("/github_receive", function (req, res) {
+  console.log(req.body);
   console.log(req.param("payload"));
   /*var foo = JSON.parse(req.param("payload"));
 
