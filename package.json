@@ -14,6 +14,7 @@
     "underscore": "*",
     "mongoose": "*",
     "express": "*",
-    "coffeekup": "*"
+    "coffeekup": "*",
+    "webworker": "*"
   }
 }

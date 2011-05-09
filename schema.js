@@ -1,39 +1,43 @@
 var
   mongoose = require("mongoose"),
   Schema = mongoose.Schema,
-  ObjectId = Schema.ObjectId;//,
-  //schema = {};
+  ObjectId = Schema.ObjectId;
 
 mongoose.connect(process.env['DUOSTACK_DB_MONGODB']);
 
-/* old schema:
-schema.Commit = new Schema({
-  timestamp: Date
-});
+mongoose.model("Committer", new Schema({
+  author: {
+    name: { type: String, required: true },
+    email: { type: String, index: true, required: true }
+  },
+  mayorships: [{
+    url: { type: String, index: true, required: true },
+    branch: { type: String, index: true, required: false }
+  }]
+}));
 
-schema.Repository = new Schema({
-  url: String,
-  commits: [schema.Commit]
-});
+mongoose.model("Repository", new Schema({
+  url: { type: String, index: true, required: true },
+  rankings: [{
+    author: {
+      name: { type: String, required: true },
+      email: { type: String, index: true, required: true }
+    },
+    numberOfCommits: { type: Number, required: true }
+  }],
+  branches: [{
+    name: { type: String, required: true },
+    rankings: [{
+      author: {
+        name: { type: String, required: true },
+        email: { type: String, index: true, required: true }
+      },
+      numberOfCommits: { type: Number, required: true }
+    }]
+  }]
+}));
 
-schema.Committer = new Schema({
-  name: String,
-  email: String,
-  commits: [schema.Commit]
-});
-
-mongoose.model("Repository", schema.Repository);
-mongoose.model("Commit", schema.Commit);
-mongoose.model("Committer", schema.Committer);
-
-module.exports = exports = {
-  Repository: mongoose.model("Repository"),
-  Commit: mongoose.model("Commit"),
-  Committer: mongoose.model("Committer")
-};
-*/
-
-var Commit = new Schema({
+mongoose.model("Commit", new Schema({
   repository: {
     url: { type: String, index: true, required: true }
   },
@@ -48,10 +52,10 @@ var Commit = new Schema({
   added: { type: [String], required: false },
   removed: { type: [String], required: false },
   modified: { type: [String], required: false }
-});
-
-mongoose.model("Commit", Commit);
+}));
 
 module.exports = exports = {
+  Committer: mongoose.model("Committer"),
+  Repository: mongoose.model("Repository"),
   Commit: mongoose.model("Commit")
 };
