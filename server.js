@@ -19,10 +19,7 @@ app.get("/test", function (req, res) {
 });
 
 app.get("/list_repos", function (req, res) {
-  /*db.Repository.find({ url: /.*//* }, function (err, repos) {
-    res.render("list_repos", { context: { repos: repos }});
-  });*/
-  db.Commit.find({ sha: /.*/ }, function (err, commits) {
+  db.Commit.find({}, function (err, commits) {
     var repos = {};
 
     _.each(commits, function (commit) {
@@ -34,6 +31,18 @@ app.get("/list_repos", function (req, res) {
     });
 
     res.render("list_repos", { context: { repos: repos }});
+  });
+});
+
+app.get("/mayor_of/:url", function (req, res) {
+  db.Commit.find({
+    //"repository.url": req.param("url"),
+    timestamp: {
+      $gte: (new Date(new Date().getTime() - 60 * 60 * 1000)) // 1 hour
+    }
+  }, function (err, commits) {
+    console.log(commits);
+    res.send(commits.length + " matching commits");
   });
 });
 
@@ -58,37 +67,6 @@ app.all("/github_receive", function (req, res) {
       sha: commit.id
     }).save();
   });
-
-  /*db.Repository.findOne({ url: payload.repository.url }, function (err, repo) {
-    if (!repo) {
-      repo = new db.Repository({
-        url: payload.repository.url
-      });
-    }
-
-    _.each(payload.commits, function (commit) {
-      var dbCommit = new db.Commit({
-        timestamp: new Date(commit.timestamp)
-      });
-
-      dbCommit.save();
-      repo.commits.push(dbCommit);
-
-      *//*db.Committer.findOne({ email: commit.author.email }, function (err, committer) {
-        if (!committer) {
-          committer = new db.Committer({
-            email: commit.author.email,
-            name: commit.author.name
-          });
-        }
-
-        committer.commits.push(dbCommit);
-        committer.save();
-      });*//*
-    });
-
-    repo.save();
-  });*/
 
   res.render("receive_response", { layout: false });
 
