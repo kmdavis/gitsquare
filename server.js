@@ -5,6 +5,9 @@ var
   app = express.createServer(),
   db = require("./schema");
 
+var
+  MAYORSHIP_MOVING_WINDOW = 7 * 24 * 60 * 60 * 1000; // 1 week
+
 app.use(express.bodyParser());
 
 app.register(".coffee", require("coffeekup"));
@@ -20,30 +23,97 @@ app.get("/test", function (req, res) {
 
 app.get("/list_repos", function (req, res) {
   db.Commit.find({}, function (err, commits) {
-    var repos = {};
+    var commitsByRepository = {};
 
     _.each(commits, function (commit) {
-      if (!repos[commit.repository.url]) {
-        repos[commit.repository.url] = [];
+      if (!commitsByRepository[commit.repository.url]) {
+        commitsByRepository[commit.repository.url] = [];
       }
 
-      repos[commit.repository.url].push(commit);
+      commitsByRepository[commit.repository.url].push(commit);
     });
 
-    res.render("list_repos", { context: { repos: repos }});
+    res.render("list_repos", { context: { repos: commitsByRepository }});
   });
 });
 
-app.get("/mayor_of/:url", function (req, res) {
-  db.Commit.find({
-    //"repository.url": req.param("url"),
+// Rules:
+// 1) Limit commits to a moving window (1 week)
+// 2) If a repo is provided, limit by that repo
+// 3) If a branch is provided, limit by that branch
+// 4) Group commits by author (email)
+// 5) Order authors by number of commits
+// 6) If there is a tie, order in reverse order of the most recent commit
+var calculateMayorOf = function (callback, repo, branch) {
+  var query = {
     timestamp: {
-      $gte: (new Date(new Date().getTime() - 60 * 60 * 1000)) // 1 hour
+      $gte: (new Date(new Date().getTime() - MAYORSHIP_MOVING_WINDOW))
     }
-  }, function (err, commits) {
+  };
+
+  if (repo) {
+    query["repository.url"] = repo;
+    if (branch) {
+      query.branch = branch;
+    }
+  }
+
+  db.Commit.find(query, function (err, commits) {
     console.log(commits);
-    res.send(commits.length + " matching commits");
+
+    var commitsByAuthor = {}, authors = [];
+
+    // Might not be necessary, but I suspect it is
+    commits = _.sortBy(commits, function (commit) {
+      return commit.timestamp;
+    });
+
+    _.each(commits, function (commit) {
+      if (!commitsByAuthor[commit.author.email]) {
+        commitsByAuthor[commit.author.email] = [];
+      }
+
+      commitsByAuthor[commit.author.email].push(commit);
+    });
+
+    _.each(commitsByAuthor, function (commits, author) {
+      authors.push({
+        email: author,
+        commits: commits
+      });
+    });
+
+    commitsByAuthor = _.sortBy(authors, function (author) {
+      var sortKey = author.commits.length + "_" + author.commits[0].timestamp.getTime() + "_" + author.email;
+
+      // TODO: There must be a better way
+      if (author.commits.length < 10) {
+        sortKey = "0000" + sortKey;
+      } else if (author.commits.length < 100) {
+        sortKey = "000" + sortKey;
+      } else if (author.commits.length < 1000) {
+        sortKey = "00" + sortKey;
+      } else if (author.commits.length < 10000) {
+        sortKey = "0" + sortKey;
+      }
+      
+      return sortKey;
+    });
+
+    callback(authors);
   });
+};
+
+app.get("/mayor_of/:url", function (req, res) {
+  calculateMayorOf(function (author) {
+    res.send(author[0].email + " is the mayor with " + author[0].commits.length + " commits");
+  }, req.param("url"));
+});
+
+app.get("/mayor_of/:url/:branch", function (req, res) {
+  calculateMayorOf(function (author) {
+    res.send(author[0].email + " is the mayor with " + author[0].commits.length + " commits");
+  }, req.param("url"), req.param("branch"));
 });
 
 app.all("/github_receive", function (req, res) {
