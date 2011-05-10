@@ -344,10 +344,10 @@
 body {
   background: @bgcolor;
 
-  #content {
+  #container {
     .background_gradient(@midcolor1, @midcolor3);
     .border_radius(1em);
-    bottom: 1em;
+    bottom: 1.6em;
     left: 1em;
     padding: 1em;
     position: absolute;
@@ -360,10 +360,12 @@ body {
       .border_radius(.4em);
       .border_radius_top_left(1em);
       .box_shadow(.1em, .1em, .1em, 0, @midcolor2);
-      cursor: default;
+      cursor: pointer;
+      display: block;
       height: 4em;
       left: -.1em;
       position: absolute;
+      text-decoration: none;
       top: -.1em;
       width: 4em;
 
@@ -374,8 +376,72 @@ body {
         font-size: 5em;
         left: .1em;
         position: absolute;
+        text-decoration: none;
         top: -.2em;
         .user_select(none);
+      }
+    }
+
+    #nav {
+      height: 4em;
+      left: 6em;
+      position: absolute;
+      right: 0em;
+      top: 0em;
+
+      a {
+        background-color: @midcolor2;
+        border: 1px solid @bgcolor;
+        border-left: none;
+        color: @fgcolor;
+        display: block;
+        float: left;
+        font-weight: bold;
+        line-height: 4em;
+        padding: 0 2em;
+        text-decoration: none;
+
+        &:hover {
+          .background_gradient(@midcolor1, @midcolor2);
+        }
+
+        &:first-of-type {
+          border-left: 1px solid @bgcolor;
+          .border_radius_left(.4em);
+        }
+
+        &:last-of-type {
+
+          .border_radius_right(.4em);
+        }
+      }
+    }
+
+    #content {
+      bottom: 1em;
+      color: @fgcolor;
+      left: 1em;
+      overflow: auto;
+      position: absolute;
+      right: 1em;
+      top: 5em;
+    }
+  }
+
+  #footer {
+    bottom: .25em;
+    color: @midcolor3;
+    left: 1em;
+    position: absolute;
+    right: 1em;
+    text-align: center;
+
+    a {
+      color: @midcolor3;
+      text-decoration: none;
+
+      &:hover {
+        color: @midcolor1;
       }
     }
   }

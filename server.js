@@ -18,13 +18,37 @@ app.configure(function() {
 app.get("/", function(req, res) {
   res.render("comingsoon", {
     context: {
-      title: "Coming Soon"
+      title: "Coming Soon",
+      showNav: false
     }
   });
 });
 
 app.get("/beta", function (req, res) {
-  res.render("index", {});
+  res.render("index", {
+    context: {
+      title: "Beta",
+      showNav: true
+    }
+  });
+});
+
+app.get("/privacy", function (req, res) {
+  res.render("privacy", {
+    context: {
+      title: "Privacy Policy",
+      showNav: true
+    }
+  });
+});
+
+app.get("/terms", function (req, res) {
+  res.render("terms", {
+    context: {
+      title: "Terms of Use",
+      showNav: true
+    }
+  });
 });
 
 app.all("/github_receive", function (req, res) {
