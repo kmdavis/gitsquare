@@ -1,0 +1,111 @@
+body {
+  background: #010712;
+}
+body #content {
+  background: #1c1f26;
+  background-image: url(data:image/svg+xml,escape("<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: #24262d;"/><stop offset="100%" style="stop-color: #13171f;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>"));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#24262d), to(#13171f));
+  background-image: -webkit-linear-gradient(top, #24262d, #13171f);
+  background-image: -moz-linear-gradient(top, #24262d, #13171f);
+  background-image: -o-linear-gradient(top, #24262d, #13171f);
+  background-image: -ms-linear-gradient(top, #24262d, #13171f);
+  background-image: linear-gradient(top, #24262d, #13171f);
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -o-border-radius: 1em;
+  -ms-border-radius: 1em;
+  border-radius: 1em;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  background-clip: padding-box;
+  bottom: 1em;
+  left: 1em;
+  padding: 1em;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+}
+body #content #logo {
+  background-color: #1c1f26;
+  border: 0.1em solid #010712;
+  -webkit-border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  -o-border-radius: 0.4em;
+  -ms-border-radius: 0.4em;
+  border-radius: 0.4em;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-border-top-left-radius: 1em;
+  -moz-border-radius-topleft: 1em;
+  -o-border-radius-topleft: 1em;
+  -ms-border-radius-topleft: 1em;
+  border-top-left-radius: 1em;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  background-clip: padding-box;
+  -webkit-box-shadow: 0.1em 0.1em 0.1em 0 #1c1f26;
+  -moz-box-shadow: 0.1em 0.1em 0.1em 0 #1c1f26;
+  -o-box-shadow: 0.1em 0.1em 0.1em 0 #1c1f26;
+  -ms-box-shadow: 0.1em 0.1em 0.1em 0 #1c1f26;
+  box-shadow: 0.1em 0.1em 0.1em 0 #1c1f26;
+  cursor: default;
+  height: 4em;
+  left: -0.1em;
+  position: absolute;
+  top: -0.1em;
+  width: 4em;
+}
+body #content #logo span {
+  text-shadow: 1px 1px 3px #26050a;
+  color: #961227;
+  font-family: MS Serif, serif;
+  font-size: 5em;
+  left: .1em;
+  position: absolute;
+  top: -0.2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#comingsoon {
+  background-color: #1c1f26;
+  border: 0.1em solid #010712;
+  -webkit-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -o-border-radius: 1em;
+  -ms-border-radius: 1em;
+  border-radius: 1em;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  background-clip: padding-box;
+  color: #961227;
+  height: 18em;
+  left: 50%;
+  margin-left: -15em;
+  margin-top: -10em;
+  padding: 1em;
+  position: absolute;
+  top: 50%;
+  width: 28em;
+}
+#comingsoon h2, #comingsoon h3 {
+  cursor: default;
+  margin: 0;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

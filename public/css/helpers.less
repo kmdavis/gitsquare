@@ -1,0 +1,326 @@
+// Developed by anthonyvscode.com November 2010
+
+.background_clip() {
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  -o-background-clip: padding-box;
+  -ms-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+// Border Radius Functions
+.border_radius(@radius: 10px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -o-border-radius: @radius;
+  -ms-border-radius: @radius;
+  border-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_top(@radius: 10px) {
+  -webkit-border-top-left-radius: @radius;
+  -webkit-border-top-right-radius: @radius;
+  -moz-border-radius-topleft: @radius;
+  -moz-border-radius-topright: @radius;
+  -o-border-radius-topleft: @radius;
+  -o-border-radius-topright: @radius;
+  -ms-border-radius-topleft: @radius;
+  -ms-border-radius-topright: @radius;
+  border-top-left-radius: @radius;
+  border-top-right-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_bottom(@radius: 10px) {
+  -webkit-border-bottom-left-radius: @radius;
+  -webkit-border-bottom-right-radius: @radius;
+  -moz-border-radius-bottomleft: @radius;
+  -moz-border-radius-bottomright: @radius;
+  -o-border-radius-bottomleft: @radius;
+  -o-border-radius-bottomright: @radius;
+  -ms-border-radius-bottomleft: @radius;
+  -ms-border-radius-bottomright: @radius;
+  border-bottom-left-radius: @radius;
+  border-bottom-right-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_left(@radius: 10px) {
+  -webkit-border-top-left-radius: @radius;
+  -webkit-border-bottom-left-radius: @radius;
+  -moz-border-radius-topleft: @radius;
+  -moz-border-radius-bottomleft: @radius;
+  -o-border-radius-topleft: @radius;
+  -o-border-radius-bottomleft: @radius;
+  -ms-border-radius-topleft: @radius;
+  -ms-border-radius-bottomleft: @radius;
+  border-top-left-radius: @radius;
+  border-bottom-left-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_right(@radius: 10px) {
+  -webkit-border-top-right-radius: @radius;
+  -webkit-border-bottom-right-radius: @radius;
+  -moz-border-radius-topright: @radius;
+  -moz-border-radius-bottomright: @radius;
+  -o-border-radius-topright: @radius;
+  -o-border-radius-bottomright: @radius;
+  -ms-border-radius-topright: @radius;
+  -ms-border-radius-bottomright: @radius;
+  border-top-right-radius: @radius;
+  border-bottom-right-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_top_left(@radius: 10px) {
+  -webkit-border-top-left-radius: @radius;
+  -moz-border-radius-topleft: @radius;
+  -o-border-radius-topleft: @radius;
+  -ms-border-radius-topleft: @radius;
+  border-top-left-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_top_right(@radius: 10px) {
+  -webkit-border-top-right-radius: @radius;
+  -moz-border-radius-topright: @radius;
+  -o-border-radius-topright: @radius;
+  -ms-border-radius-topright: @radius;
+  border-top-right-radius: @radius;
+
+  .background_clip();
+}
+
+.border_radius_bottom_left(@radius: 10px) {
+  -webkit-border-bottom-left-radius: @radius;
+  -moz-border-radius-bottomleft: @radius;
+  -o-border-radius-bottomleft: @radius;
+  -ms-border-radius-bottomleft: @radius;
+  border-bottom-left-radius: @radius;
+
+  .background_clip();
+}
+.border_radius_bottom_right(@radius: 10px) {
+  -webkit-border-bottom-right-radius: @radius;
+  -moz-border-radius-bottomright: @radius;
+  -o-border-radius-bottomright: @radius;
+  -ms-border-radius-bottomright: @radius;
+  border-bottom-right-radius: @radius;
+
+  .background_clip();
+}
+
+// Box Shadow
+.box_shadow(@shadow_x: 3px, @shadow_y: 3px, @shadow_rad: 3px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  -moz-box-shadow: @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  -o-box-shadow: @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  -ms-box-shadow: @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  box-shadow: @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+}
+
+// Inner Box Shadow
+.inner_box_shadow(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  -moz-box-shadow: inset @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  -o-box-shadow: inset @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  -ms-box-shadow: inset @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+  box-shadow: inset @shadow_x @shadow_y @shadow_rad @shadow_spread @shadow_color;
+}
+
+.inner_box_shadow_left_right(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_top_bottom(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_left(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_right(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_top(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_bottom(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_top_u(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_bottom_u(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y - @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_top_left(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x + @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.inner_box_shadow_top_right(@shadow_x: 0, @shadow_y: 0, @shadow_rad: 10px, @shadow_spread: 0, @shadow_color: #888) {
+  -webkit-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -moz-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -o-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  -ms-box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+  box-shadow: inset @shadow_x (@shadow_y + @shadow_rad) @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color, inset (@shadow_x - @shadow_rad) @shadow_y @shadow_rad (@shadow_spread - @shadow_rad) @shadow_color;
+}
+
+.text_shadow(@shadow_color: #fff) {
+  text-shadow: 0 1px 0 @shadow_col;
+}
+
+.opacity(@op: 100) {
+
+  filter: e(%("alpha(opacity=%s)", @op));
+  -moz-opacity: @op/100;
+  -khtml-opacity: @op/100;
+  opacity: @op/100;
+}
+
+.background_gradient(@from: #000, @to: #fff) {
+  background: (@from + @to) / 2;
+  background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @to)))); // IE9, Opera 9
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@from), to(@to)); // Chrome, Safari4
+  background-image: -webkit-linear-gradient(top, @from, @to); // Chrome10, Safari5.1
+  background-image: -moz-linear-gradient(top, @from, @to); // FF 3.6
+  background-image: -o-linear-gradient(top, @from, @to); // Opera 11.10
+  background-image: -ms-linear-gradient(top, @from, @to); // IE10
+  background-image: linear-gradient(top, @from, @to);
+  //filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d')", @from, @to); // IE6,IE7,IE8
+}
+
+.background_gradient_3(@from: #000, @mid: #888, @to: #fff) {
+  background: (@from + @to) / 2;
+  background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="50%" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @mid, @to))));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,  @from), color-stop(0.5,  @mid), color-stop(1.0,  @to));
+  background-image: -webkit-linear-gradient(top, @from, @mid, @to);
+  background-image: -moz-linear-gradient(top, @from, @mid, @to);
+  background-image: -o-linear-gradient(top, @from, @mid, @to);
+  background-image: -ms-linear-gradient(top, @from, @mid, @to);
+  background-image: linear-gradient(top, @from, @mid, @to);
+  //filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d')", @from, @to); // IE6,IE7,IE8
+}
+
+.background_gradient_4(@from: #000, @stop1: #555, @stop2: #aaa, @to: #fff) {
+  background: (@from + @to) / 2;
+  background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="33%" style="stop-color: %d;"/><stop offset="67%" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @stop1, @stop2, @to))));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,  @from), color-stop(0.33, @stop1), color-stop(0.67, @stop2), color-stop(1.0,  @to));
+  background-image: -webkit-linear-gradient(top, @from, @stop1, @stop2, @to);
+  background-image: -moz-linear-gradient(top, @from, @stop1, @stop2, @to);
+  background-image: -o-linear-gradient(top, @from, @stop1, @stop2, @to);
+  background-image: -ms-linear-gradient(top, @from, @stop1, @stop2, @to);
+  background-image: linear-gradient(top, @from, @stop1, @stop2, @to);
+  //filter: %("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d')", @from, @to); // IE6,IE7,IE8
+}
+
+.background_gradient_5(@from: #000, @stop1: #404040, @stop2: #808080, @stop3: #c0c0c0, @to: #fff) {
+  background: (@from + @to) / 2;
+  background-image: e(%("url(data:image/svg+xml,%s)", escape(%('<svg xmlns="http://www.w3.org/2000/svg" version="1.0"><defs><linearGradient id="gradient" x1="0" y1="0" x2="0" y2="100%"><stop offset="0%" style="stop-color: %d;"/><stop offset="25%" style="stop-color: %d;"/><stop offset="50%" style="stop-color: %d;"/><stop offset="75%" style="stop-color: %d;"/><stop offset="100%" style="stop-color: %d;"/></linearGradient></defs><rect x="0" y="0" fill="url(#gradient)" width="100%" height="100%" /></svg>', @from, @stop1, @stop2, @stop3, @to))));
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.0,  @from), color-stop(0.25, @stop1), color-stop(0.5,  @stop2), color-stop(0.75, @stop3), color-stop(1.0,  @to));
+  background-image: -webkit-linear-gradient(top, @from, @stop1, @stop2, @stop3, @to);
+  background-image: -moz-linear-gradient(top, @from, @stop1, @stop2, @stop3, @to);
+  background-image: -o-linear-gradient(top, @from, @stop1, @stop2, @stop3, @to);
+  background-image: -ms-linear-gradient(top, @from, @stop1, @stop2, @stop3, @to);
+  background-image: linear-gradient(top, @from, @stop1, @stop2, @stop3, @to);
+  //filter: e(%("progid:DXImageTransform.Microsoft.gradient(startColorstr='%d', endColorstr='%d')", @from, @to)); // IE6,IE7,IE8
+}
+
+.transition(@range: all, @time: 1s, @ease: ease-in-out) {
+  -moz-transition: @range @time @ease;
+  -webkit-transition: @range @time @ease;
+  -o-transition: @range @time @ease;
+  -ms-transition: @range @time @ease;
+  transition: @range @time @ease;
+}
+
+// Transformations
+.skew(@angle_x: 35, @angle_y: 0) {
+  -webkit-transform: skew(%("%ddeg", @angle_x), %("%ddeg", @angle_y));
+  -moz-transform: skew(%("%ddeg", @angle_x), %("%ddeg", @angle_y));
+  -o-transform: skew(%("%ddeg", @angle_x), %("%ddeg", @angle_y));
+  -ms-transform: skew(%("%ddeg", @angle_x), %("%ddeg", @angle_y));
+  transform: skew(%("%ddeg", @angle_x), %("%ddeg", @angle_y));
+}
+
+.scale(@scale_x: 1) {
+  -webkit-transform: scale(@scale_x);
+  -moz-transform: scale(@scale_x);
+  -o-transform: scale(@scale_x);
+  -ms-transform: scale(@scale_x);
+  transform: scale(@scale_x);
+}
+
+.rotate(@angle: 45) {
+  -webkit-transform: rotate(%("%ddeg", @deg));
+  -moz-transform: rotate(%("%ddeg", @deg));
+  -o-transform: rotate(%("%ddeg", @deg));
+  -ms-transform: rotate(%("%ddeg", @deg));
+  transform: rotate(%("%ddeg", @deg));
+}
+
+.translate(@move_x: 10px, @move_y: 10px) {
+  -webkit-transform: translate(@move_x, @move_y);
+  -moz-transform: translate(@move_x, @move_y);
+  -o-transform: translate(@move_x, @move_y);
+  -ms-transform:translate(@move_x, @move_y);
+  transform: translate(@move_x, @move_y);
+}
+
+.user_select(@state: none) {
+  -webkit-user-select: @state;
+  -moz-user-select: @state;
+  -o-user-select: @state;
+  -ms-user-select: @state;
+  user-select: @state;
+}

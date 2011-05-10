@@ -6,12 +6,24 @@ var
 
   app = express.createServer();
 
-app.use(express.bodyParser());
+app.configure(function() {
+  app.use(express.bodyParser());
+  app.use(express.compiler({ src: __dirname + '/public', enable: ['less']}));
+  app.use(express.static(__dirname + '/public'));
 
-app.register(".coffee", require("coffeekup"));
-app.set("view engine", "coffee");
+  app.register(".coffee", require("coffeekup"));
+  app.set("view engine", "coffee");
+});
 
 app.get("/", function(req, res) {
+  res.render("comingsoon", {
+    context: {
+      title: "Coming Soon"
+    }
+  });
+});
+
+app.get("/beta", function (req, res) {
   res.render("index", {});
 });
 
